@@ -235,6 +235,9 @@ router.get('/listings', async (req, res) => {
   const db = req.db;
   const { channel, product_id } = req.query || {};
   const activeOnly = req.query.active_only !== 'false';
+  let limit = parseInt(req.query.limit || '200', 10);
+  if (!Number.isFinite(limit) || limit <= 0) limit = 200;
+  if (limit > 500) limit = 500;
 
   let where = [];
   let params = [];
@@ -262,8 +265,9 @@ router.get('/listings', async (req, res) => {
       FROM listings
       ${whereClause}
       ORDER BY created_at DESC
-      LIMIT 200
-      `
+      LIMIT $${params.length + 1}
+      `,
+      [...params, limit]
     );
 
     return res.status(200).json(result.rows);
