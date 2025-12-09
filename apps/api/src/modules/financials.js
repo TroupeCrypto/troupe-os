@@ -15,6 +15,7 @@
 
 const express = require('express');
 const router = express.Router();
+const DECIMAL_PRECISION = 18;
 
 // ============================================================================
 // HELPERS
@@ -204,8 +205,8 @@ router.post('/ledger/entries', async (req, res) => {
   }
 
   // Double-entry integrity check
-  const roundedDebits = Number(totalDebits.toFixed(12));
-  const roundedCredits = Number(totalCredits.toFixed(12));
+  const roundedDebits = Number(totalDebits.toFixed(DECIMAL_PRECISION));
+  const roundedCredits = Number(totalCredits.toFixed(DECIMAL_PRECISION));
 
   if (roundedDebits !== roundedCredits) {
     return res.status(400).json({
@@ -215,7 +216,13 @@ router.post('/ledger/entries', async (req, res) => {
   }
 
   // Insert entry + lines in a transaction
-  const client = await db.connect();
+  let client = null;
+  try {
+    client = await db.connect();
+  } catch (err) {
+    console.error('Financials: db connect error:', err);
+    return res.status(500).json({ error: 'Database connection failed' });
+  }
 
   try {
     await client.query('BEGIN');
@@ -276,11 +283,19 @@ router.post('/ledger/entries', async (req, res) => {
       lines: lineInserts
     });
   } catch (err) {
-    await client.query('ROLLBACK');
+    if (client) {
+      try {
+        await client.query('ROLLBACK');
+      } catch (rollbackErr) {
+        console.error('Financials: rollback error:', rollbackErr);
+      }
+    }
     console.error('Financials: create ledger entry error:', err);
     return res.status(500).json({ error: 'Failed to create ledger entry' });
   } finally {
-    client.release();
+    if (client) {
+      client.release();
+    }
   }
 });
 
