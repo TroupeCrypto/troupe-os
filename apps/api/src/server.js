@@ -97,7 +97,7 @@ app.use('/assets', require('./modules/assets'));
 app.use('/financials', require('./modules/financials'));
 
 // AI Workforce
-// app.use('/ai', require('./modules/ai'));
+app.use('/ai', require('./modules/ai'));
 
 // Marketplace
 // app.use('/marketplace', require('./modules/marketplace'));
