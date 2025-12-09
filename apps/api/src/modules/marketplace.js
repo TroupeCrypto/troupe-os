@@ -397,9 +397,10 @@ router.post('/orders/:id/items', async (req, res) => {
     return res.status(400).json({ error: 'quantity must be a positive number' });
   }
 
-  const client = await db.connect();
+  let client;
 
   try {
+    client = await db.connect();
     await client.query('BEGIN');
 
     // Fetch product price and currency
@@ -488,11 +489,15 @@ router.post('/orders/:id/items', async (req, res) => {
       order: updatedOrderRes.rows[0]
     });
   } catch (err) {
-    await client.query('ROLLBACK');
+    if (client) {
+      await client.query('ROLLBACK');
+    }
     console.error('Marketplace: add order item error:', err);
     return res.status(500).json({ error: 'Failed to add item to order' });
   } finally {
-    client.release();
+    if (client) {
+      client.release();
+    }
   }
 });
 
