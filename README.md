@@ -1,2 +1,2 @@
 # troupe-os
-2nd Brain. 
+Master System Specification is located in `MASTER_SYSTEM_SPEC.md`.
