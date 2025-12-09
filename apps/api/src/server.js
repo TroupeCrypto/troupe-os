@@ -94,7 +94,7 @@ app.get('/health', async (req, res) => {
 app.use('/assets', require('./modules/assets'));
 
 // Financials
-// app.use('/financials', require('./modules/financials'));
+app.use('/financials', require('./modules/financials'));
 
 // AI Workforce
 // app.use('/ai', require('./modules/ai'));
