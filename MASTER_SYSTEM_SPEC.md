@@ -149,24 +149,24 @@ The OS must support:
 **Key Concepts:**
 
 - **Ledger**
-  - Double-entry style tracking for all inflows and outflows.
-  - Entries linked to assets, orders, campaigns, or projects where possible.
+    - Double-entry style tracking for all inflows and outflows.
+    - Entries linked to assets, orders, campaigns, or projects where possible.
 
 - **Accounts**
-  - Accounts for:
-    - Troupe Inc. (global).
-    - Sub-brands (music, art, collectibles, crypto, cannabis, etc.).
-    - Individual users or collaborators.
+    - Accounts for:
+        - Troupe Inc. (global).
+        - Sub-brands (music, art, collectibles, crypto, cannabis, etc.).
+        - Individual users or collaborators.
 
 - **Transactions**
-  - Fiat and crypto.
-  - Status states (pending, confirmed, failed, reversed).
-  - Source and destination (e.g., wallet A → wallet B, card processor → bank).
+    - Fiat and crypto.
+    - Status states (pending, confirmed, failed, reversed).
+    - Source and destination (e.g., wallet A → wallet B, card processor → bank).
 
 - **Reporting**
-  - P&L views per brand, per asset type, per campaign.
-  - Cashflow timeline.
-  - Unrealized vs realized gains for crypto and collectibles.
+    - P&L views per brand, per asset type, per campaign.
+    - Cashflow timeline.
+    - Unrealized vs realized gains for crypto and collectibles.
 
 ---
 
@@ -200,10 +200,10 @@ The OS needs to power:
 AI workers are treated as:
 
 - First-class entities with:
-  - Name, role, description.
-  - Permissions and scopes.
-  - Assigned tasks and outputs.
-  - Performance metrics.
+    - Name, role, description.
+    - Permissions and scopes.
+    - Assigned tasks and outputs.
+    - Performance metrics.
 
 **Functions:**
 
@@ -234,13 +234,13 @@ Security objectives:
 - Role and permission definitions.
 - Policy engine (e.g., “only Owner or Finance Admin can view full ledger details”).
 - Logging for:
-  - Auth events.
-  - Data writes.
-  - Configuration changes.
+    - Auth events.
+    - Data writes.
+    - Configuration changes.
 - Dashboards:
-  - Security overview.
-  - Recent incidents.
-  - Access review reports.
+    - Security overview.
+    - Recent incidents.
+    - Access review reports.
 
 ---
 
@@ -304,21 +304,21 @@ The OS is organized into modules that can be mapped to apps and packages in the 
 ### 5.1 Environments
 
 - **Development**
-  - Fast iteration.
-  - Lower security constraints, but still with RBAC active.
+    - Fast iteration.
+    - Lower security constraints, but still with RBAC active.
 
 - **Staging**
-  - Mirrors production structure.
-  - Used for testing new features end-to-end.
+    - Mirrors production structure.
+    - Used for testing new features end-to-end.
 
 - **Production**
-  - Live site and services.
-  - Strict security and monitoring.
+    - Live site and services.
+    - Strict security and monitoring.
 
 ### 5.2 CI/CD Expectations
 
 - Automated tests on every push to main branches.
-- Linting and type checks (even if codebase is JS-first, type-checking tools are encouraged).
+- Linting and type checks with emphasis on consistent type safety across stacks.
 - Deployment gates for production (manual approval or protected branches).
 - Rollback strategy with previous deployment snapshots.
 
@@ -327,52 +327,52 @@ The OS is organized into modules that can be mapped to apps and packages in the 
 ## 6. Data & Observability
 
 - **Metrics**
-  - Traffic, latency, error rates.
-  - Revenue metrics by module and channel.
-  - AI agent activity and performance.
+    - Traffic, latency, error rates.
+    - Revenue metrics by module and channel.
+    - AI agent activity and performance.
 
 - **Logs**
-  - Structured logs for all critical services.
-  - Correlation IDs across requests and jobs.
+    - Structured logs for all critical services.
+    - Correlation IDs across requests and jobs.
 
 - **Tracing**
-  - Trace major flows: ingestion → indexing → listing → sale → ledger.
+    - Trace major flows: ingestion → indexing → listing → sale → ledger.
 
 - **Backups**
-  - Regular backups for databases and critical data.
-  - Documented restore procedures.
+    - Regular backups for databases and critical data.
+    - Documented restore procedures.
 
 ---
 
 ## 7. Roadmap Phases (High Level)
 
 1. **Phase 0 — Foundation**
-   - Lock spec (this document).
-   - Define initial database schema.
-   - Establish core API gateway and auth.
+    - Lock spec (this document).
+    - Define initial database schema.
+    - Establish core API gateway and auth.
 
 2. **Phase 1 — Asset + User Core**
-   - Implement user/auth module.
-   - Implement asset registry and ingestion basics.
-   - Minimal admin console for inspection.
+    - Implement user/auth module.
+    - Implement asset registry and ingestion basics.
+    - Minimal admin console for inspection.
 
 3. **Phase 2 — Financials + Marketplace Base**
-   - Implement ledger and accounts.
-   - Implement basic product/listing/order models.
-   - Simple sales pipeline on the public hub.
+    - Implement ledger and accounts.
+    - Implement basic product/listing/order models.
+    - Simple sales pipeline on the public hub.
 
 4. **Phase 3 — AI Workforce Integration**
-   - Register AI agents as first-class entities.
-   - Automate ingestion, indexing, and reporting workflows.
+    - Register AI agents as first-class entities.
+    - Automate ingestion, indexing, and reporting workflows.
 
 5. **Phase 4 — Security, Governance, and Advanced Dashboards**
-   - Security dashboard and incident views.
-   - Governance frameworks and reviews.
-   - Advanced analytics and experimentation tools.
+    - Security dashboard and incident views.
+    - Governance frameworks and reviews.
+    - Advanced analytics and experimentation tools.
 
 6. **Phase 5 — Expansion & External Integrations**
-   - Third-party marketplaces and services.
-   - Additional brands and verticals.
+    - Third-party marketplaces and services.
+    - Additional brands and verticals.
 
 ---
 
@@ -380,6 +380,6 @@ The OS is organized into modules that can be mapped to apps and packages in the 
 
 - This spec is versioned in Git.
 - Any structural changes to domains, modules, or principles:
-  - Must be done via pull request.
-  - Must include rationale and migration notes.
+    - Must be done via pull request.
+    - Must include rationale and migration notes.
 - This document is the first place to update when the OS design evolves.
