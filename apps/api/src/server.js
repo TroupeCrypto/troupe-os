@@ -100,7 +100,7 @@ app.use('/financials', require('./modules/financials'));
 app.use('/ai', require('./modules/ai'));
 
 // Marketplace
-// app.use('/marketplace', require('./modules/marketplace'));
+app.use('/marketplace', require('./modules/marketplace'));
 
 // Admin
 // app.use('/admin', require('./modules/admin'));
