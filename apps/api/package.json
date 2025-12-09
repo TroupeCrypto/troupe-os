@@ -1,0 +1,35 @@
+{
+  "name": "@troupe-os/api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Core HTTP API service for Troupe OS (gateway to database, assets, financials, and admin functions).",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "NODE_ENV=production node src/server.js",
+    "lint": "echo \"No linter configured yet\" && exit 0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.13.0",
+    "pg-pool": "^3.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "troupe-os",
+    "api",
+    "gateway",
+    "express",
+    "postgres"
+  ],
+  "author": "Troupe Inc.",
+  "license": "UNLICENSED"
+}
