@@ -490,7 +490,11 @@ router.post('/orders/:id/items', async (req, res) => {
     });
   } catch (err) {
     if (client) {
-      await client.query('ROLLBACK');
+      try {
+        await client.query('ROLLBACK');
+      } catch (rollbackErr) {
+        console.error('Marketplace: rollback error:', rollbackErr);
+      }
     }
     console.error('Marketplace: add order item error:', err);
     return res.status(500).json({ error: 'Failed to add item to order' });
